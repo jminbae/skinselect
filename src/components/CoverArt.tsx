@@ -1,45 +1,44 @@
+import Image from "next/image";
 import { getCategory } from "@/lib/data/categories";
 import type { CategorySlug } from "@/lib/types";
 
 /**
- * 미니멀 커버 — 뉴트럴 블록 + 카테고리 컬러 도트 + 라벨.
- * 사진·그라데이션 없이 리스트의 리듬만 만든다.
+ * 실사 커버 — 칼럼 cover 사진, 없으면 카테고리 대표 이미지.
+ * 장비 PNG(투명 배경)는 뉴트럴 배경 위에 담는다.
  */
 export default function CoverArt({
   category,
-  size = "md",
+  cover,
+  sizes = "(max-width: 768px) 100vw, 50vw",
+  priority = false,
   className = "",
 }: {
   category: CategorySlug;
-  title?: string;
-  size?: "sm" | "md" | "lg";
+  cover?: string;
+  sizes?: string;
+  priority?: boolean;
   className?: string;
 }) {
   const cat = getCategory(category);
-  const dot = cat?.tone.from ?? "#0e7a5f";
+  const src = cover ?? cat?.image ?? "/images/clinics/gangnam/1.webp";
+  const isDevice = src.includes("/equipment/");
 
   return (
     <div
-      className={`relative flex h-full w-full items-end bg-paper-warm ${className}`}
-      aria-hidden
+      className={`relative h-full w-full overflow-hidden bg-paper-warm ${className}`}
     >
-      <span
-        className={`absolute rounded-full ${
-          size === "lg" ? "left-6 top-6 h-2.5 w-2.5" : "left-4 top-4 h-2 w-2"
-        }`}
-        style={{ background: dot }}
+      <Image
+        src={src}
+        alt=""
+        fill
+        priority={priority}
+        sizes={sizes}
+        className={
+          isDevice
+            ? "object-contain p-6 transition-transform duration-700 group-hover:scale-[1.03]"
+            : "object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+        }
       />
-      <p
-        className={`font-semibold uppercase tracking-[0.16em] text-ink-faint ${
-          size === "sm"
-            ? "p-4 text-[10px]"
-            : size === "lg"
-              ? "p-6 text-[12px]"
-              : "p-4 text-[11px]"
-        }`}
-      >
-        {cat?.name}
-      </p>
     </div>
   );
 }

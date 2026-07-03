@@ -131,7 +131,11 @@ export default async function TopicPage({
             />
             <div className="grid md:grid-cols-[1fr_1.15fr]">
               <div className="relative aspect-[16/9] md:aspect-auto md:min-h-[300px]">
-                <CoverArt category={hub.category} title={hub.title} size="lg" />
+                <CoverArt
+                  category={hub.category}
+                  cover={hub.cover}
+                  sizes="(max-width: 768px) 100vw, 480px"
+                />
               </div>
               <div className="flex flex-col justify-between p-6 md:p-9">
                 <div>

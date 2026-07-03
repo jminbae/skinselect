@@ -7,6 +7,7 @@ import { getDoctor } from "@/lib/data/doctors";
 import { getCategory } from "@/lib/data/categories";
 import { draftNotice, site } from "@/lib/site";
 import ColumnCard, { AuthorChip } from "@/components/ColumnCard";
+import CoverArt from "@/components/CoverArt";
 import ScrollRow from "@/components/ScrollRow";
 import SectionHeading from "@/components/SectionHeading";
 import Disclaimer from "@/components/Disclaimer";
@@ -164,6 +165,16 @@ export default async function ColumnDetailPage({
             />
             {draftNotice}
           </p>
+        </div>
+
+        {/* 커버 — 큼직한 실사 */}
+        <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-2xl md:aspect-[21/9]">
+          <CoverArt
+            category={column.category}
+            cover={column.cover}
+            priority
+            sizes="(max-width: 1152px) 100vw, 1152px"
+          />
         </div>
       </header>
 

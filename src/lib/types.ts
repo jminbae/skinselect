@@ -1,24 +1,25 @@
 /** 지점 slug — 5개 고정 */
 export type BranchSlug = "gangnam" | "suwon" | "pangyo" | "geondae" | "daegu";
 
-/** 카테고리 slug — 8개 고정 (상세기획서 F-3) */
+/** 카테고리 slug — 시술·안티에이징 6축 (2026-07-04 콘텐츠 전환) */
 export type CategorySlug =
-  | "acne"
-  | "pigment"
-  | "anti-aging"
-  | "laser"
-  | "sensitive"
-  | "scalp-hair"
-  | "skin-disease"
-  | "skincare";
+  | "remodeling"
+  | "lifting"
+  | "skin-boosting"
+  | "volumizing"
+  | "smoothing"
+  | "toning";
 
 export interface Category {
   slug: CategorySlug;
-  name: string; // 여드름·모공
-  short: string; // 여드름 (칩용 축약)
+  name: string; // 리모델링
+  short: string; // 칩용 축약
+  en: string; // Remodeling — 영문 라벨
   description: string;
-  /** 커버 아트 톤 (타이포그래픽 커버의 배경 그라데이션) */
+  /** 카테고리 컬러 도트 */
   tone: { from: string; to: string; fg: string };
+  /** 카테고리 대표 이미지 (타일·커버 폴백) */
+  image: string;
 }
 
 export interface CareerItem {
@@ -106,6 +107,7 @@ export interface Column {
   conclusion: string[]; // "이 글의 결론"
   references: string[]; // 출처/참고문헌
   readingMinutes: number;
+  cover?: string; // 커버 사진 (/images/...) — 없으면 카테고리 대표 이미지
   isHub?: boolean; // 카테고리 허브(총정리) 글
   featured?: boolean; // 에디터 픽
   todaysPick?: boolean; // 오늘의 픽 (홈 상단 대형 카드 1편)
