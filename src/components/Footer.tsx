@@ -1,14 +1,6 @@
 import Link from "next/link";
 import { site, medicalDisclaimer, navItems } from "@/lib/site";
 
-const clinicLinks = [
-  { href: "/clinics/gangnam", label: "강남점" },
-  { href: "/clinics/suwon", label: "수원점" },
-  { href: "/clinics/pangyo", label: "판교점" },
-  { href: "/clinics/geondae", label: "건대점" },
-  { href: "/clinics/daegu", label: "대구점" },
-];
-
 export default function Footer() {
   return (
     <footer className="mt-24 border-t border-line bg-paper-warm">
@@ -23,42 +15,34 @@ export default function Footer() {
               직접 쓰고, 모든 칼럼에 근거 출처를 답니다.
             </p>
           </div>
-          <div className="flex gap-16">
-            <nav aria-label="푸터 메뉴">
-              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-ink-faint">
-                Menu
-              </p>
-              <ul className="mt-4 space-y-2.5">
-                {navItems.map((item) => (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      className="text-[15px] text-ink-soft transition-colors hover:text-accent"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-            <nav aria-label="진료 병원">
-              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-ink-faint">
-                Clinics
-              </p>
-              <ul className="mt-4 space-y-2.5">
-                {clinicLinks.map((c) => (
-                  <li key={c.href}>
-                    <Link
-                      href={c.href}
-                      className="text-[15px] text-ink-soft transition-colors hover:text-accent"
-                    >
-                      힐하우스 {c.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
+          <nav aria-label="푸터 메뉴">
+            <p className="text-xs font-semibold uppercase tracking-[0.15em] text-ink-faint">
+              Menu
+            </p>
+            <ul className="mt-4 space-y-2.5">
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-[15px] text-ink-soft transition-colors hover:text-accent"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+              <li className="pt-1">
+                <Link
+                  href="/clinics"
+                  className="inline-flex items-center gap-1.5 text-[13.5px] text-ink-faint transition-colors hover:text-accent"
+                >
+                  <span className="rounded-sm border border-line-strong px-1 py-px text-[10px] font-bold tracking-widest">
+                    광고
+                  </span>
+                  진료 병원 안내
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </div>
 
         <div className="mt-12 border-t border-line pt-8">
@@ -66,9 +50,9 @@ export default function Footer() {
             {medicalDisclaimer}
           </p>
           <p className="mt-2 text-[13px] leading-relaxed text-ink-faint">
-            스킨셀렉트의 칼럼·저자 페이지·질문 보드는 의료광고가 아닌 정보성
+            스킨셀렉트의 칼럼·필진 페이지·질문 보드는 의료광고가 아닌 정보성
             콘텐츠입니다. 병원 위치·진료시간 등 실무 정보는 광고 영역으로
-            표시된 지점 페이지에서만 제공합니다.
+            표시된 진료 병원 안내에서만 제공합니다.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
             <p className="text-[13px] text-ink-faint">

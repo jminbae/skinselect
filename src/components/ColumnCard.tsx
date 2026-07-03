@@ -16,7 +16,7 @@ export function AuthorChip({
   return (
     <Link
       href={`/doctors/${doctor.slug}`}
-      className="group/author flex items-center gap-2.5"
+      className="group/author relative z-10 flex items-center gap-2.5"
     >
       <span
         className={`relative block shrink-0 overflow-hidden rounded-full bg-paper-warm ${
@@ -45,12 +45,22 @@ export function AuthorChip({
   );
 }
 
+/** 카드 전체를 덮는 스트레치드 링크 — 내부에 개별 링크(저자 등)가 공존할 수 있게 */
+function StretchedLink({ href, label }: { href: string; label: string }) {
+  return (
+    <Link href={href} className="absolute inset-0 z-[1]" aria-label={label} />
+  );
+}
+
 /**
  * 칼럼 카드 — variant:
  *  hero     오늘의 픽 대형 카드 (홈 최상단)
  *  featured 에디터 픽 (커버 + 요약)
  *  row      리스트형 (텍스트 중심, 목록·피드)
  *  mini     가로 스크롤용 축소형
+ *
+ * hero/featured/row는 내부에 저자 링크가 공존하므로 중첩 <a>를 피해
+ * 스트레치드 링크 패턴을 쓴다 (React 19 hydration 규칙).
  */
 export default function ColumnCard({
   column,
@@ -65,10 +75,8 @@ export default function ColumnCard({
 
   if (variant === "hero") {
     return (
-      <Link
-        href={`/columns/${column.slug}`}
-        className="group block overflow-hidden rounded-3xl bg-white shadow-card transition-shadow duration-300 hover:shadow-card-hover"
-      >
+      <div className="group relative overflow-hidden rounded-3xl bg-white shadow-card transition-shadow duration-300 hover:shadow-card-hover">
+        <StretchedLink href={`/columns/${column.slug}`} label={column.title} />
         <div className="grid md:grid-cols-[1.1fr_1fr]">
           <div className="relative aspect-[16/10] md:aspect-auto md:min-h-[340px]">
             <CoverArt category={column.category} title={column.title} size="lg" />
@@ -91,16 +99,14 @@ export default function ColumnCard({
             </div>
           </div>
         </div>
-      </Link>
+      </div>
     );
   }
 
   if (variant === "featured") {
     return (
-      <Link
-        href={`/columns/${column.slug}`}
-        className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-hover"
-      >
+      <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-hover">
+        <StretchedLink href={`/columns/${column.slug}`} label={column.title} />
         <div className="relative aspect-[16/9]">
           <CoverArt category={column.category} title={column.title} />
         </div>
@@ -115,7 +121,7 @@ export default function ColumnCard({
             <AuthorChip doctor={author} />
           </div>
         </div>
-      </Link>
+      </div>
     );
   }
 
@@ -143,10 +149,8 @@ export default function ColumnCard({
 
   // row (기본)
   return (
-    <Link
-      href={`/columns/${column.slug}`}
-      className="group flex items-start gap-5 border-b border-line py-6 last:border-b-0"
-    >
+    <div className="group relative flex items-start gap-5 border-b border-line py-6 last:border-b-0">
+      <StretchedLink href={`/columns/${column.slug}`} label={column.title} />
       <div className="min-w-0 flex-1">
         <p className="text-[11.5px] font-semibold uppercase tracking-[0.14em] text-accent">
           {cat?.name}
@@ -165,6 +169,6 @@ export default function ColumnCard({
       <div className="relative hidden h-[92px] w-[132px] shrink-0 overflow-hidden rounded-xl sm:block">
         <CoverArt category={column.category} title={column.title} size="sm" />
       </div>
-    </Link>
+    </div>
   );
 }

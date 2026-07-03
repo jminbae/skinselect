@@ -24,8 +24,7 @@ export const draftNotice =
 
 export const navItems = [
   { href: "/columns", label: "칼럼" },
-  { href: "/doctors", label: "의사들" },
+  { href: "/doctors", label: "필진" },
   { href: "/community", label: "질문과 답" },
-  { href: "/clinics", label: "진료 병원" },
   { href: "/about", label: "소개" },
 ] as const;

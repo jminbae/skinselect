@@ -2,11 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Column, Doctor } from "@/lib/types";
 import { DoctorBadge } from "@/components/ui";
-import { branchName } from "@/lib/data/clinics";
 
 /**
- * 원장 카드 (DOC-00 스펙) — 사진(정방형)+이름+배지+지점+분야 칩 최대 3개
- * +대표 칼럼 1편. 별점·후기·순위·조회수 없음 (Must).
+ * 필진 카드 — 팀블로그의 저자 카드.
+ * 사진 + 이름 + 배지 + 한 줄 철학 + 대표 글.
+ * 소속·별점·후기·순위·조회수는 표기하지 않는다.
  */
 export default function DoctorCard({
   doctor,
@@ -36,26 +36,17 @@ export default function DoctorCard({
           </h3>
           <DoctorBadge badge={doctor.badge} />
         </div>
-        <p className="mt-1 text-[13px] text-ink-faint">
-          힐하우스 {branchName(doctor.branch)}
+        <p className="mt-2.5 line-clamp-2 font-serif text-[15px] leading-relaxed text-ink-soft">
+          “{doctor.headline}”
         </p>
-        <p className="mt-2.5 line-clamp-2 text-[14px] leading-relaxed text-ink-soft">
-          {doctor.headline}
-        </p>
-        <div className="mt-3 flex flex-wrap gap-1.5">
-          {doctor.fields.slice(0, 3).map((f) => (
-            <span
-              key={f}
-              className="rounded-full bg-paper-warm px-2.5 py-1 text-[12px] font-medium text-ink-soft"
-            >
-              {f}
-            </span>
-          ))}
-        </div>
-        {pinnedColumn && (
+        {pinnedColumn ? (
           <p className="mt-4 border-t border-line pt-3.5 text-[13px] leading-snug text-ink-soft">
-            <span className="mr-1.5 font-semibold text-accent">대표 칼럼</span>
+            <span className="mr-1.5 font-semibold text-accent">대표 글</span>
             <span className="line-clamp-1 inline">{pinnedColumn.title}</span>
+          </p>
+        ) : (
+          <p className="mt-4 border-t border-line pt-3.5 text-[13px] text-ink-faint">
+            첫 칼럼을 준비하고 있어요
           </p>
         )}
       </div>
