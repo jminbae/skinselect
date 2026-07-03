@@ -215,7 +215,7 @@ export default async function ColumnDetailPage({
             <AuthorChip doctor={author} size="md" />
             <div className="text-[12.5px] leading-relaxed text-ink-faint">
               <p>
-                작성·검토: {author.name} 원장 · 최종 검토일 {dateDot}
+                작성·검토: {author.name} · 최종 검토일 {dateDot}
               </p>
               {column.reviewedBy && (
                 <p className="mt-0.5">
@@ -319,7 +319,7 @@ export default async function ColumnDetailPage({
               <div className="min-w-0">
                 <p className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
                   <span className="font-serif text-[18px] font-bold text-ink transition-colors group-hover:text-accent">
-                    {author.name} 원장
+                    {author.name}
                   </span>
                   <DoctorBadge badge={author.badge} />
                 </p>

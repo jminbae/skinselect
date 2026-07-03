@@ -38,19 +38,32 @@ export function Chip({
   href?: string;
   active?: boolean;
 }) {
-  const cls = `inline-flex shrink-0 items-center rounded-full border px-3.5 py-1.5 text-[13px] font-medium transition-colors ${
-    active
-      ? "border-ink bg-ink text-paper"
-      : "border-line-strong bg-transparent text-ink-soft hover:border-ink hover:text-ink"
-  }`;
+  const base = "inline-flex shrink-0 items-center rounded-full border px-3.5 py-1.5 text-[13px] font-medium";
   if (href) {
     return (
-      <Link href={href} className={cls}>
+      <Link
+        href={href}
+        className={`${base} transition-colors ${
+          active
+            ? "border-ink bg-ink text-paper"
+            : "border-line-strong bg-transparent text-ink-soft hover:border-ink hover:text-ink"
+        }`}
+      >
         {label}
       </Link>
     );
   }
-  return <span className={cls}>{label}</span>;
+  return (
+    <span
+      className={`${base} ${
+        active
+          ? "border-ink bg-ink text-paper"
+          : "border-line-strong bg-transparent text-ink-soft"
+      }`}
+    >
+      {label}
+    </span>
+  );
 }
 
 /** 섹션 아이브로 (작은 대문자 라벨) */

@@ -4,7 +4,6 @@ import { getDoctor } from "@/lib/data/doctors";
 import { getColumn } from "@/lib/data/columns";
 import { answerDisclaimer } from "@/lib/site";
 import { AuthorChip } from "@/components/ColumnCard";
-import { Reactions } from "@/components/ui";
 
 function formatDate(date: string) {
   return date.replaceAll("-", ".");
@@ -87,25 +86,8 @@ export default function QuestionCard({
         </div>
       )}
 
-      {/* 반응 + 칼럼 발행 배지 */}
-      <div className="mt-5 flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
-        {question.answer ? (
-          <Reactions helpful={question.helpful} />
-        ) : (
-          <span className="flex items-center gap-1 text-[12.5px] text-ink-faint">
-            <svg
-              viewBox="0 0 16 16"
-              className="h-3.5 w-3.5"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.4"
-              aria-hidden
-            >
-              <path d="M14 8c0 3-2.7 5.5-6 5.5-.8 0-1.6-.1-2.3-.4L2 14l1-3.2C2.4 10 2 9 2 8c0-3 2.7-5.5 6-5.5S14 5 14 8z" />
-            </svg>
-            저도 궁금해요 {question.helpful.toLocaleString()}
-          </span>
-        )}
+      {/* 칼럼 발행 배지 */}
+      <div className="mt-5 flex flex-wrap items-center justify-end gap-x-4 gap-y-3">
         {column && (
           <Link
             href={`/columns/${column.slug}`}

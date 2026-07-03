@@ -43,7 +43,7 @@ export default function AboutPage() {
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-[16px] leading-relaxed text-ink-soft">
             검색하면 광고가 먼저 나오는 시대에, 스킨셀렉트는 다른 약속을
-            합니다. 피부과 의사 {site.doctorCount}명이 진료실에서 가장 많이
+            합니다. 피부과 전문의 {site.doctorCount}명이 진료실에서 가장 많이
             받는 질문에 실명으로, 근거를 들어 답합니다.
           </p>
         </div>

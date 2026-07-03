@@ -28,7 +28,6 @@ export default function AskButton() {
       <button
         type="button"
         onClick={handleClick}
-        aria-disabled="true"
         title="서비스 오픈 후 이용할 수 있어요"
         className="inline-flex cursor-default items-center gap-2.5 rounded-full bg-accent/85 px-7 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-accent"
       >

@@ -4,7 +4,7 @@ export const site = {
   nameEn: "SkinSelect",
   tagline: "피부에 대해 궁금하면, 광고가 아니라 의사의 답을 읽는 곳",
   description:
-    "피부과 의사가 실명으로 직접 쓰는 검증된 피부 정보 매거진 — 모든 칼럼에 근거 출처, 의사 면허 검증 필진.",
+    "피부과 전문의 15명이 실명으로 쓰는 피부 매거진. 모든 칼럼에 근거 출처와 최종 검토일을 답니다.",
   url: "https://skinselect.kr",
   doctorCount: 15,
   clinicCount: 5,

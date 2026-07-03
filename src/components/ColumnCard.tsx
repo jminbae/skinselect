@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Column, Doctor } from "@/lib/types";
 import { getCategory } from "@/lib/data/categories";
-import { DoctorBadge, Reactions } from "@/components/ui";
+import { DoctorBadge } from "@/components/ui";
 import CoverArt from "@/components/CoverArt";
 
 /** 저자 미니 라인 (사진 + 이름 + 배지) */
@@ -37,7 +37,7 @@ export function AuthorChip({
             size === "md" ? "text-[15px]" : "text-[13.5px]"
           }`}
         >
-          {doctor.name} 원장
+          {doctor.name}
         </span>
         <DoctorBadge badge={doctor.badge} />
       </span>
@@ -95,7 +95,9 @@ export default function ColumnCard({
             </div>
             <div className="mt-7 flex flex-wrap items-center justify-between gap-3">
               <AuthorChip doctor={author} size="md" />
-              <Reactions helpful={column.helpful} questions={column.questionCount} />
+              <span className="text-[12.5px] text-ink-faint">
+                {column.readingMinutes}분 읽기
+              </span>
             </div>
           </div>
         </div>
@@ -140,7 +142,7 @@ export default function ColumnCard({
             {column.title}
           </h3>
           <p className="mt-auto pt-3 text-[12.5px] text-ink-faint">
-            {author.name} 원장 · {cat?.short}
+            {author.name} · {cat?.short}
           </p>
         </div>
       </Link>
@@ -163,7 +165,9 @@ export default function ColumnCard({
         </p>
         <div className="mt-3.5 flex flex-wrap items-center gap-x-4 gap-y-2">
           <AuthorChip doctor={author} />
-          <Reactions helpful={column.helpful} questions={column.questionCount} />
+          <span className="text-[12.5px] text-ink-faint">
+            {column.readingMinutes}분 읽기
+          </span>
         </div>
       </div>
       <div className="relative hidden h-[92px] w-[132px] shrink-0 overflow-hidden rounded-xl sm:block">

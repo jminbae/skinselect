@@ -238,12 +238,12 @@ export default function Home() {
         <div className="rounded-3xl bg-accent-soft px-6 py-14 text-center md:py-20">
           <Eyebrow>SkinSelect</Eyebrow>
           <h2 className="mt-4 font-serif text-[26px] font-bold leading-snug text-ink md:text-[32px]">
-            진료실의 언어로 쓴 글이
-            <br className="md:hidden" /> 매주 도착합니다
+            진료실의 언어로 쓴 글을
+            <br className="md:hidden" /> 읽어 보세요
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-[14.5px] leading-relaxed text-ink-soft">
-            광고도, 출처 없는 조언도 없습니다. 피부과 의사 {site.doctorCount}
-            명이 실명으로 쓰는 피부 매거진을 읽어 보세요.
+            광고도, 출처 없는 조언도 없습니다. 피부과 전문의{" "}
+            {site.doctorCount}명이 실명으로 쓰는 피부 매거진입니다.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <Link

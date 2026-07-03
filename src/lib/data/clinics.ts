@@ -93,7 +93,7 @@ export const clinics: Clinic[] = [
     access: [
       "신분당선·경강선 판교역 1번 출구 연결",
       "버스 판교역동편·판교역북편 정류장 이용",
-      "판교테크원타워 주차장 이용 시 최대 3시간 주차권 제공",
+      "판교테크원타워 주차장 이용 가능 (최대 3시간 지원)",
     ],
     homepage: "https://healhousepg.com",
     photos: [

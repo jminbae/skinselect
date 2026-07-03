@@ -138,10 +138,12 @@ export default async function TopicPage({
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         {/* 총정리(허브) 글 — 상단 고정 대형 카드 */}
         {hub && hubAuthor && (
-          <Link
-            href={`/columns/${hub.slug}`}
-            className="group relative -mt-14 block overflow-hidden rounded-3xl bg-white shadow-card transition-shadow duration-300 hover:shadow-card-hover md:-mt-16"
-          >
+          <div className="group relative -mt-14 overflow-hidden rounded-3xl bg-white shadow-card transition-shadow duration-300 hover:shadow-card-hover md:-mt-16">
+            <Link
+              href={`/columns/${hub.slug}`}
+              className="absolute inset-0 z-[1]"
+              aria-label={hub.title}
+            />
             <div className="grid md:grid-cols-[1fr_1.15fr]">
               <div className="relative aspect-[16/9] md:aspect-auto md:min-h-[300px]">
                 <CoverArt category={hub.category} title={hub.title} size="lg" />
@@ -166,7 +168,7 @@ export default async function TopicPage({
                 </div>
               </div>
             </div>
-          </Link>
+          </div>
         )}
 
         {/* 최신순 리스트 */}

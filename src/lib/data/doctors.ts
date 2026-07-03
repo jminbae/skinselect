@@ -12,7 +12,7 @@ import type { Doctor } from "@/lib/types";
  * - 피부텐텐 https://pibutenten.kr/doctors/{slug} (인사말·주력 분야 보강)
  *
  * badge는 공식 소스에 "피부과 전문의" 명시가 확인된 경우에만 부여 (의료법 56조).
- * stats는 데모용 목업 수치 — 임계값(칼럼 3편·조회 1만·답변 5건) 미달 필드는 undefined.
+ * stats는 실데이터 연동 전까지 미기재 (목업 수치 노출 금지 — 검수 반영).
  */
 export const doctors: Doctor[] = [
   // ───────────────────────────── 강남 ─────────────────────────────
@@ -22,7 +22,7 @@ export const doctors: Doctor[] = [
     branch: "gangnam",
     badge: "피부과 전문의",
     position: "대표원장",
-    headline: "진심 어린 치료와 꾸준한 연구로 답을 찾습니다.",
+    headline: "백반증 진료실에서 가장 자주 받는 질문들에 답을 씁니다.",
     intro: [
       "피부과 전문의 배정민입니다. 대학병원에서 피부과 교수로 오래 진료하고 연구해 왔습니다.",
       "특히 백반증과 색소 질환을 깊이 공부했고, 지금도 학회 활동과 연구를 이어가고 있습니다.",
@@ -50,7 +50,7 @@ export const doctors: Doctor[] = [
       { item: "대한백반증색소학회 학술대회 최우수연제상 (2019)" },
       { item: "대한피부연구학회 신진연구자상 (2019)" },
     ],
-    fields: ["백반증", "기미·색소", "레이저 치료", "아토피·민감성"],
+    fields: ["백반증", "기미·색소", "레이저", "아토피·민감성"],
     fieldSlugs: ["pigment", "laser", "sensitive"],
     photos: [
       "/images/doctors/bae-jungmin-1.webp",
@@ -63,7 +63,6 @@ export const doctors: Doctor[] = [
         label: "피부텐텐 Q&A",
       },
     ],
-    stats: { columns: 6, answers: 24, views: 38000 },
   },
   {
     slug: "jung-hanmi",
@@ -71,7 +70,7 @@ export const doctors: Doctor[] = [
     branch: "gangnam",
     badge: "피부과 전문의",
     position: "대표원장",
-    headline: "한 번 시술로 잊히는 의사가 아닌, 평생 피부 주치의가 되겠습니다.",
+    headline: "시술 이름이 아니라, 지금 내 피부에 필요한 것을 씁니다.",
     intro: [
       "피부과 전문의 정한미입니다. 가톨릭중앙의료원에서 피부과 수련을 마쳤습니다.",
       "리프팅과 스킨부스터, 톡신·필러처럼 피부 노화와 관련된 진료를 주로 봅니다.",
@@ -102,7 +101,6 @@ export const doctors: Doctor[] = [
         label: "피부텐텐 Q&A",
       },
     ],
-    stats: { columns: 5, answers: 30, views: 21000 },
   },
   {
     slug: "park-saemi",
@@ -110,7 +108,7 @@ export const doctors: Doctor[] = [
     branch: "gangnam",
     badge: "피부과 전문의",
     position: "대표원장",
-    headline: "정확한 진단이 좋은 치료의 시작입니다.",
+    headline: "여드름 치료의 순서와 근거를 씁니다.",
     intro: [
       "피부과 전문의 박새미입니다. 가톨릭중앙의료원에서 피부과 수련을 마쳤습니다.",
       "여드름과 레이저 시술, 피부 노화 관리 분야를 주로 진료합니다.",
@@ -126,13 +124,12 @@ export const doctors: Doctor[] = [
       { item: "대한피부레이저학회 정회원" },
       { item: "대한여드름주사학회 정회원" },
     ],
-    fields: ["여드름·모공", "레이저 시술", "안티에이징"],
+    fields: ["여드름·모공", "레이저", "안티에이징"],
     fieldSlugs: ["acne", "laser", "anti-aging"],
     photos: [
       "/images/doctors/park-saemi-1.webp",
       "/images/doctors/park-saemi-2.webp",
     ],
-    stats: { columns: 4, answers: 14 },
   },
   {
     slug: "chu-jiyoon",
@@ -140,7 +137,7 @@ export const doctors: Doctor[] = [
     branch: "gangnam",
     badge: "피부과 전문의",
     position: "원장",
-    headline: "피부 상태에 맞는 치료 계획을 함께 세웁니다.",
+    headline: "치료는 한 번의 시술이 아니라 과정이라는 것을 씁니다.",
     intro: [
       "피부과 전문의 추지윤입니다. 가톨릭중앙의료원에서 피부과 수련을 마쳤습니다.",
       "여러 피부과에서 원장으로 진료하며 여드름과 레이저, 노화 관리 경험을 쌓았습니다.",
@@ -157,7 +154,7 @@ export const doctors: Doctor[] = [
       { item: "대한피부레이저학회 정회원" },
       { item: "대한여드름주사학회 정회원" },
     ],
-    fields: ["여드름", "레이저 시술", "안티에이징"],
+    fields: ["여드름", "레이저", "안티에이징"],
     fieldSlugs: ["acne", "laser", "anti-aging"],
     photos: [
       "/images/doctors/chu-jiyoon-1.webp",
@@ -172,7 +169,7 @@ export const doctors: Doctor[] = [
     branch: "suwon",
     badge: "피부과 전문의",
     position: "대표원장",
-    headline: "한 분 한 분의 피부를 깊이 이해하고 끝까지 살피겠습니다.",
+    headline: "여드름과 흉터처럼 오래 가는 고민의 단계적 계획을 씁니다.",
     intro: [
       "피부과 전문의 권수현입니다. 아주대학교병원에서 피부과 수련을 마치고 임상강사로 일했습니다.",
       "여드름과 흉터, 모공, 주름처럼 오래 신경 쓰이는 고민을 주로 진료합니다.",
@@ -204,7 +201,6 @@ export const doctors: Doctor[] = [
         label: "피부텐텐 Q&A",
       },
     ],
-    stats: { columns: 4, answers: 18 },
   },
   {
     slug: "go-hyerim",
@@ -212,7 +208,7 @@ export const doctors: Doctor[] = [
     branch: "suwon",
     badge: "피부과 전문의",
     position: "원장",
-    headline: "자신 있는 피부로 일상이 더 당당해지도록 돕겠습니다.",
+    headline: "무너진 피부 장벽을 회복하는 순서부터 씁니다.",
     intro: [
       "피부과 전문의 고혜림입니다. 가톨릭중앙의료원에서 피부과 수련을 마쳤습니다.",
       "기미 같은 색소 고민부터 민감성 피부, 여드름까지 폭넓게 진료합니다.",
@@ -230,7 +226,7 @@ export const doctors: Doctor[] = [
       { item: "대한피부항노화학회 정회원" },
       { item: "대한여드름주사학회 정회원" },
     ],
-    fields: ["기미·색소", "아토피·민감성", "여드름", "피부 장벽 관리"],
+    fields: ["기미·색소", "아토피·민감성", "여드름", "피부 장벽"],
     fieldSlugs: ["pigment", "sensitive", "acne", "skincare"],
     photos: [
       "/images/doctors/go-hyerim-1.webp",
@@ -243,7 +239,6 @@ export const doctors: Doctor[] = [
         label: "피부텐텐 Q&A",
       },
     ],
-    stats: { columns: 3, answers: 12 },
   },
   {
     slug: "kim-sujeong",
@@ -251,7 +246,7 @@ export const doctors: Doctor[] = [
     branch: "suwon",
     badge: "피부과 전문의",
     position: "원장",
-    headline: "충분히 듣고, 필요한 치료만 말씀드립니다.",
+    headline: "민감한 피부일수록 덜어내는 관리가 먼저라고 씁니다.",
     intro: [
       "피부과 전문의 김수정입니다. 충남대학교병원에서 피부과 수련을 마치고 외래교수로 일했습니다.",
       "일본 규슈대학병원 파견 경험을 포함해 대학병원과 개원가에서 두루 진료해 왔습니다.",
@@ -284,7 +279,7 @@ export const doctors: Doctor[] = [
     branch: "suwon",
     badge: "피부과 전문의",
     position: "원장",
-    headline: "건강한 피부가 일상의 긍정적인 변화로 이어지도록 진료합니다.",
+    headline: "유행하는 루틴 대신 기초의 근거를 씁니다.",
     intro: [
       "피부과 전문의 김수형입니다. 가톨릭중앙의료원에서 피부과 수련을 마쳤습니다.",
       "스킨부스터와 필러, 톡신 같은 시술부터 여드름·지루피부염 같은 질환까지 함께 봅니다.",
@@ -303,7 +298,7 @@ export const doctors: Doctor[] = [
       { item: "대한아토피피부염학회 정회원" },
       { item: "대한미용피부외과학회 정회원" },
     ],
-    fields: ["스킨부스터·필러", "여드름·지루피부염", "스킨케어 상담"],
+    fields: ["스킨부스터·필러", "여드름·지루피부염", "스킨케어·성분"],
     fieldSlugs: ["anti-aging", "acne", "skincare"],
     photos: [
       "/images/doctors/kim-suhyeong-1.webp",
@@ -325,7 +320,7 @@ export const doctors: Doctor[] = [
     branch: "pangyo",
     badge: "피부과 전문의",
     position: "대표원장",
-    headline: "피부 고민에 깊이 공감하고, 충분한 소통으로 답을 찾습니다.",
+    headline: "레이저의 기전과 한계를 있는 그대로 씁니다.",
     intro: [
       "피부과 전문의 김종식입니다. 서울대에서 공학을 공부한 뒤 의학의 길로 들어와 가톨릭중앙의료원에서 피부과 수련을 마쳤습니다.",
       "레이저·고주파 시술과 여드름, 색소 질환, 사마귀·한관종 같은 양성 종양까지 폭넓게 진료합니다.",
@@ -347,7 +342,7 @@ export const doctors: Doctor[] = [
       { item: "대한여드름주사학회 정회원" },
       { item: "한국피부유형연구회 정회원" },
     ],
-    fields: ["레이저·고주파 시술", "여드름", "기미·색소", "사마귀·양성종양"],
+    fields: ["레이저·고주파", "여드름", "기미·색소", "사마귀·양성종양"],
     fieldSlugs: ["laser", "acne", "pigment", "skin-disease"],
     photos: [
       "/images/doctors/kim-jongsik-1.webp",
@@ -360,7 +355,6 @@ export const doctors: Doctor[] = [
         label: "피부텐텐 Q&A",
       },
     ],
-    stats: { columns: 4, answers: 28, views: 15000 },
   },
   {
     slug: "byun-hyunjung",
@@ -368,7 +362,7 @@ export const doctors: Doctor[] = [
     branch: "pangyo",
     badge: "피부과 전문의",
     position: "원장",
-    headline: "불필요한 시술은 덜어내고, 피부 본연의 기초를 다집니다.",
+    headline: "화장대의 개수보다 성분의 근거를 씁니다.",
     intro: [
       "피부과 전문의 변현정입니다. 삼성서울병원에서 피부과 수련을 마쳤습니다.",
       "여러 피부과에서 원장으로 진료하며 다양한 피부 고민을 만나 왔습니다.",
@@ -383,7 +377,7 @@ export const doctors: Doctor[] = [
       { item: "대한피부과학회 정회원" },
       { item: "대한피부과의사회 정회원" },
     ],
-    fields: ["피부 기초 관리", "안티에이징", "레이저 시술"],
+    fields: ["피부 기초 관리", "안티에이징", "레이저"],
     fieldSlugs: ["skincare", "anti-aging", "laser"],
     photos: [
       "/images/doctors/byun-hyunjung-1.webp",
@@ -398,7 +392,7 @@ export const doctors: Doctor[] = [
     branch: "geondae",
     badge: "피부과 전문의",
     position: "대표원장",
-    headline: "한 분 한 분의 피부를 한 폭의 캔버스처럼 살핍니다.",
+    headline: "빠지는 머리카락의 정상과 이상을 구분해 씁니다.",
     intro: [
       "피부과 전문의 이도영입니다. 서울대학교 의과대학을 졸업하고 서울아산병원에서 피부과 수련을 마쳤습니다.",
       "백반증과 색소 질환, 여드름·흉터, 리프팅 같은 항노화 시술을 주로 진료합니다.",
@@ -423,7 +417,7 @@ export const doctors: Doctor[] = [
       { item: "대한피부과의사회 학술상 (2021·2022·2024)" },
       { item: "대한피부항노화학회 학술상 (2023)" },
     ],
-    fields: ["백반증·색소", "여드름·흉터", "안티에이징·리프팅", "레이저 시술"],
+    fields: ["백반증·색소", "여드름·흉터", "안티에이징·리프팅", "레이저"],
     fieldSlugs: ["pigment", "acne", "anti-aging", "laser"],
     photos: [
       "/images/doctors/lee-doyoung-1.webp",
@@ -436,7 +430,6 @@ export const doctors: Doctor[] = [
         label: "피부텐텐 Q&A",
       },
     ],
-    stats: { columns: 5, answers: 22, views: 26000 },
   },
   {
     slug: "kang-hyunjin",
@@ -444,7 +437,7 @@ export const doctors: Doctor[] = [
     branch: "geondae",
     badge: "피부과 전문의",
     position: "원장",
-    headline: "면밀한 상담과 끊임없는 연구로 알맞은 치료를 찾아드립니다.",
+    headline: "탈모 치료를 시작할 시점을 근거로 씁니다.",
     intro: [
       "피부과 전문의 강현진입니다. 토론토대학교에서 생명과학을 공부한 뒤 가톨릭중앙의료원에서 피부과 수련을 마쳤습니다.",
       "백반증·밀크커피반점 같은 색소 질환과 탈모, 레티노이드·자외선 차단제 같은 성분 상담을 주로 합니다.",
@@ -475,7 +468,6 @@ export const doctors: Doctor[] = [
         label: "피부텐텐 Q&A",
       },
     ],
-    stats: { columns: 3, answers: 9 },
   },
 
   // ───────────────────────────── 대구 ─────────────────────────────
@@ -485,7 +477,7 @@ export const doctors: Doctor[] = [
     branch: "daegu",
     badge: "피부과 전문의",
     position: "원장",
-    headline: "과장 없이, 필요한 만큼만 정확하게 치료합니다.",
+    headline: "흔하지만 잘 모르는 피부 질환을 쉽게 풀어 씁니다.",
     intro: [
       "피부과 전문의 김현욱입니다. 계명대학교 동산병원에서 피부과 수련을 마쳤습니다.",
       "군 병원 피부과장으로 일하며 다양한 피부 질환을 진료한 경험이 있습니다.",
@@ -500,7 +492,7 @@ export const doctors: Doctor[] = [
       { item: "대한피부과의사회 정회원" },
       { item: "대한항노화학회 정회원" },
     ],
-    fields: ["피부질환 진료", "안티에이징", "레이저 시술"],
+    fields: ["피부 질환", "안티에이징", "레이저"],
     fieldSlugs: ["skin-disease", "anti-aging", "laser"],
     photos: [
       "/images/doctors/kim-hyunwook-1.webp",
@@ -513,7 +505,7 @@ export const doctors: Doctor[] = [
     branch: "daegu",
     badge: "피부과 전문의",
     position: "대표원장",
-    headline: "피부와 함께 마음까지 편안해지는 진료를 지향합니다.",
+    headline: "나이 드는 피부에서 지금 일어나는 일을 씁니다.",
     intro: [
       "피부과 전문의 박효진입니다. 서울성모병원과 부천성모병원에서 피부과 수련을 마쳤습니다.",
       "힐하우스피부과 수원점 원장을 거쳐 지금은 대구점에서 진료하고 있습니다.",
@@ -535,7 +527,7 @@ export const doctors: Doctor[] = [
       { item: "대한미용피부외과학회 정회원" },
       { item: "대한화장품의학회 정회원" },
     ],
-    fields: ["리프팅·주름", "기미·색소", "여드름·흉터", "레이저 시술"],
+    fields: ["리프팅·주름", "기미·색소", "여드름·흉터", "레이저"],
     fieldSlugs: ["anti-aging", "pigment", "acne", "laser"],
     photos: [
       "/images/doctors/park-hyojin-1.webp",
@@ -548,7 +540,6 @@ export const doctors: Doctor[] = [
         label: "피부텐텐 Q&A",
       },
     ],
-    stats: { columns: 3, answers: 16 },
   },
   {
     slug: "yoon-jimin",
@@ -556,7 +547,7 @@ export const doctors: Doctor[] = [
     branch: "daegu",
     badge: "피부과 전문의",
     position: "원장",
-    headline: "대학병원에서 배운 원칙대로 진료합니다.",
+    headline: "대학병원에서 배운 원칙대로, 감별과 기준을 씁니다.",
     intro: [
       "피부과 전문의 윤지민입니다. 계명대학교 동산병원에서 피부과 수련을 마쳤습니다.",
       "동산병원 전임의와 임상교수요원으로 일하며 폭넓은 피부 질환을 진료했습니다.",
@@ -569,7 +560,7 @@ export const doctors: Doctor[] = [
       { item: "대한피부과학회 정회원" },
       { item: "대한피부과의사회 정회원" },
     ],
-    fields: ["피부질환 진료", "여드름", "민감성 피부"],
+    fields: ["피부 질환", "여드름", "민감성 피부"],
     fieldSlugs: ["skin-disease", "acne", "sensitive"],
     photos: [
       "/images/doctors/yoon-jimin-1.webp",

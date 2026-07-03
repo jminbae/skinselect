@@ -26,7 +26,7 @@ export default function WriterCard({
           />
         </span>
         <p className="mt-3 text-[15px] font-semibold text-ink transition-colors group-hover:text-accent">
-          {doctor.name} 원장
+          {doctor.name}
         </p>
         <p className="mt-0.5 text-[11.5px] text-ink-faint">{doctor.badge}</p>
       </Link>

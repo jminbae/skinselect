@@ -84,13 +84,18 @@ export default function Header() {
       {/* 모바일 전체 메뉴 — header 밖 형제 요소, 불투명 풀스크린 */}
       <div
         className={`fixed inset-0 z-[70] flex flex-col bg-paper transition-opacity duration-200 md:hidden ${
-          open ? "opacity-100" : "pointer-events-none opacity-0"
+          open ? "opacity-100" : "pointer-events-none invisible opacity-0"
         }`}
-        aria-hidden={!open}
+        inert={!open}
       >
         <div className="flex h-16 items-center justify-between border-b border-line px-5">
-          <span className="font-serif text-[22px] font-bold tracking-tight text-ink">
-            스킨셀렉트
+          <span className="flex items-center gap-2.5">
+            <span className="font-serif text-[22px] font-bold tracking-tight text-ink">
+              스킨셀렉트
+            </span>
+            <span className="rounded-full border border-line-strong px-2.5 py-1 text-[10px] font-semibold tracking-wide text-ink-faint">
+              DRAFT v0.1
+            </span>
           </span>
           <button
             type="button"

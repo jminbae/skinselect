@@ -4,17 +4,15 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { CategorySlug, Doctor, SnsLink } from "@/lib/types";
 import { doctors, getDoctor } from "@/lib/data/doctors";
-import { branchName, getClinic } from "@/lib/data/clinics";
+import { getClinic } from "@/lib/data/clinics";
 import { columnsByAuthor } from "@/lib/data/columns";
 import { equipmentByBranch } from "@/lib/data/equipment";
 import { site } from "@/lib/site";
 import HeroCrossfade from "@/components/HeroCrossfade";
-import CountUpStrip, { type StripItem } from "@/components/CountUpStrip";
 import ColumnCard from "@/components/ColumnCard";
 import ScrollRow from "@/components/ScrollRow";
 import SectionHeading from "@/components/SectionHeading";
 import { Chip, DoctorBadge, Eyebrow } from "@/components/ui";
-import DoctorActionBar from "@/components/doctors/DoctorActionBar";
 
 export function generateStaticParams() {
   return doctors.map((d) => ({ slug: d.slug }));
@@ -29,29 +27,10 @@ export async function generateMetadata({
   const doctor = getDoctor(slug);
   if (!doctor) return {};
   return {
-    title: `${doctor.name} 원장 — ${doctor.badge}`,
-    description: `"${doctor.headline}" — 피부과 전문의 ${doctor.name} 원장의 칼럼과 소개.`,
+    title: `${doctor.name} — ${doctor.badge} · 스킨셀렉트 필진`,
+    description: `"${doctor.headline}" — ${doctor.badge} ${doctor.name}의 칼럼과 소개.`,
     openGraph: { images: [doctor.photos[0]] },
   };
-}
-
-/* ── ② 사회적 증거 임계값 — 미달 칸은 숨김, 전부 미달이면 스트립 미노출 ── */
-const STAT_THRESHOLDS = { columns: 3, views: 10000, answers: 5 } as const;
-
-function buildStripItems(doctor: Doctor): StripItem[] {
-  const { stats } = doctor;
-  if (!stats) return [];
-  const items: StripItem[] = [];
-  if (stats.columns !== undefined && stats.columns >= STAT_THRESHOLDS.columns) {
-    items.push({ label: "발행 칼럼", value: stats.columns, suffix: "편" });
-  }
-  if (stats.views !== undefined && stats.views >= STAT_THRESHOLDS.views) {
-    items.push({ label: "누적 조회", value: stats.views, format: "man" });
-  }
-  if (stats.answers !== undefined && stats.answers >= STAT_THRESHOLDS.answers) {
-    items.push({ label: "질문 답변", value: stats.answers, suffix: "건" });
-  }
-  return items;
 }
 
 /* ── ③ 분야 칩 ↔ 카테고리 링크 짝짓기 ──
@@ -167,9 +146,7 @@ export default async function DoctorPage({
   if (!doctor) notFound();
 
   const clinic = getClinic(doctor.branch);
-  const branchLabel = branchName(doctor.branch);
   const cols = columnsByAuthor(doctor.slug);
-  const stripItems = buildStripItems(doctor);
   const gear = equipmentByBranch(doctor.branch);
   const visibleCareer = doctor.career.slice(0, 3);
   const hiddenCareer = doctor.career.slice(3);
@@ -193,7 +170,6 @@ export default async function DoctorPage({
           worksFor: {
             "@type": "MedicalClinic",
             name: clinic.name,
-            address: clinic.address,
             url: `${site.url}/clinics/${clinic.slug}`,
           },
         }
@@ -205,7 +181,7 @@ export default async function DoctorPage({
   };
 
   return (
-    <article className="pb-28 md:pb-10">
+    <article className="pb-10">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -242,14 +218,9 @@ export default async function DoctorPage({
         </div>
       </section>
 
-      {/* ② 사회적 증거 스트립 + ③ 주력 진료 분야 칩 */}
+      {/* ③ 자주 다루는 주제 칩 */}
       <section className="mx-auto max-w-6xl px-5 pt-10 md:px-8 md:pt-12">
-        {stripItems.length > 0 && (
-          <div className="mx-auto max-w-2xl">
-            <CountUpStrip items={stripItems} />
-          </div>
-        )}
-        <div className={stripItems.length > 0 ? "mt-10" : ""}>
+        <div>
           <Eyebrow>자주 다루는 주제</Eyebrow>
           <div className="mt-3.5 flex flex-wrap gap-2">
             {doctor.fields.map((f, i) => {
@@ -274,25 +245,6 @@ export default async function DoctorPage({
           moreHref={cols.length > 0 ? "/columns" : undefined}
           moreLabel="전체 칼럼"
         />
-
-        {doctor.greeting && (
-          <figure className="mb-10 max-w-2xl">
-            <blockquote className="relative rounded-2xl border border-line bg-paper-warm px-7 py-7 md:px-9 md:py-8">
-              <span
-                className="absolute -top-4 left-6 font-serif text-[52px] leading-none text-accent/30"
-                aria-hidden
-              >
-                “
-              </span>
-              <p className="font-serif text-[17px] font-medium leading-[1.75] text-ink md:text-[19px]">
-                {doctor.greeting}
-              </p>
-              <figcaption className="mt-4 text-[13px] text-ink-faint">
-                — {doctor.name} 원장의 인사말
-              </figcaption>
-            </blockquote>
-          </figure>
-        )}
 
         {cols.length === 0 ? (
           <div className="rounded-2xl border border-dashed border-line-strong bg-white px-6 py-14 text-center">
@@ -409,8 +361,8 @@ export default async function DoctorPage({
       <section className="mx-auto max-w-6xl px-5 py-14 md:px-8 md:py-20">
         <SectionHeading eyebrow="Gallery" title="둘러보기" />
 
-        {/* (a) 원장 갤러리 */}
-        <RowLabel title="갤러리" note="인물 · 진료 환경" />
+        {/* (a) 인물 */}
+        <RowLabel title="인물" />
         <ScrollRow ariaLabel={`${doctor.name} 원장 갤러리`}>
           {doctor.photos.map((src, i) => (
             <figure
@@ -434,7 +386,7 @@ export default async function DoctorPage({
         {/* (b) 소속 지점 공간 사진 */}
         {clinic && clinic.photos.length > 0 && (
           <>
-            <RowLabel title="진료 공간" />
+            <RowLabel title="공간" />
             <ScrollRow ariaLabel={`${clinic.name} 공간 사진`}>
               {clinic.photos.map((src, i) => (
                 <figure
@@ -501,7 +453,7 @@ export default async function DoctorPage({
                 진료 병원 안내
               </p>
               <p className="mt-2.5 font-serif text-[19px] font-bold leading-snug text-ink transition-colors group-hover:text-accent md:text-[23px]">
-                {doctor.name} 원장 진료: 힐하우스 {branchLabel}
+                {doctor.name} 원장 진료: {clinic.name}
               </p>
               <p className="mt-1.5 text-[13.5px] text-ink-faint">
                 {clinic.region}
@@ -517,12 +469,6 @@ export default async function DoctorPage({
         </section>
       )}
 
-      {/* 하단 고정 바 — 질문하기 | 진료 병원 안내 */}
-      <DoctorActionBar
-        name={doctor.name}
-        branch={doctor.branch}
-        branchLabel={branchLabel}
-      />
     </article>
   );
 }

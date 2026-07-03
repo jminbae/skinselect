@@ -11,8 +11,8 @@ export default function Footer() {
             <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
               {site.tagline}.
               <br />
-              의사 면허를 검증한 피부과 의사 {site.doctorCount}명이 실명으로
-              직접 쓰고, 모든 칼럼에 근거 출처를 답니다.
+              피부과 전문의 {site.doctorCount}명이 실명으로 직접 쓰고, 모든
+              칼럼에 근거 출처를 답니다.
             </p>
           </div>
           <nav aria-label="푸터 메뉴">
@@ -50,9 +50,8 @@ export default function Footer() {
             {medicalDisclaimer}
           </p>
           <p className="mt-2 text-[13px] leading-relaxed text-ink-faint">
-            스킨셀렉트의 칼럼·필진 페이지·질문 보드는 의료광고가 아닌 정보성
-            콘텐츠입니다. 병원 위치·진료시간 등 실무 정보는 광고 영역으로
-            표시된 진료 병원 안내에서만 제공합니다.
+            칼럼·필진 페이지·질문 보드에는 예약·가격 등 병원 실무 정보를 싣지
+            않으며, 병원 안내는 광고로 표시된 페이지에서만 제공합니다.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
             <p className="text-[13px] text-ink-faint">

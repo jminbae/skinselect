@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { questions } from "@/lib/data/questions";
-import { answerDisclaimer } from "@/lib/site";
+import { answerDisclaimer, draftNotice } from "@/lib/site";
 import { Eyebrow } from "@/components/ui";
 import Disclaimer from "@/components/Disclaimer";
 import AskButton from "@/components/community/AskButton";
@@ -39,6 +39,13 @@ export default function CommunityPage() {
       {/* 보드 — 중앙 1열 (최대 720px) */}
       <section className="mx-auto max-w-[720px] px-5 py-10 md:px-8 md:py-14">
         <Disclaimer text={answerDisclaimer} />
+        <p className="mt-3 flex items-start gap-2 text-[12.5px] leading-relaxed text-ink-faint">
+          <span
+            className="mt-[5px] h-1.5 w-1.5 shrink-0 rounded-full bg-gold"
+            aria-hidden
+          />
+          {draftNotice}
+        </p>
 
         <div className="mt-8 mb-4 flex items-end justify-between gap-4">
           <h2 className="font-serif text-[19px] font-bold text-ink md:text-[21px]">
