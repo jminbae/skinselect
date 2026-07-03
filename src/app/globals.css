@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── SkinSelect palette — porcelain · ink · clinical green ── */
+  --color-paper: #faf8f4;
+  --color-paper-warm: #f4f0e8;
+  --color-ink: #1f1d1a;
+  --color-ink-soft: #52504b;
+  --color-ink-faint: #8a867e;
+  --color-line: #e7e1d6;
+  --color-line-strong: #d6cfc0;
+  --color-accent: #1c5951;
+  --color-accent-deep: #123f39;
+  --color-accent-soft: #e3ede9;
+  --color-clay: #b5714f;
+  --color-clay-soft: #f3e7de;
+  --color-gold: #a08048;
+
+  --font-sans: var(--font-pretendard), "Pretendard", -apple-system, "Apple SD Gothic Neo", sans-serif;
+  --font-serif: var(--font-serif-kr), "Noto Serif KR", "Nanum Myeongjo", serif;
+
+  --shadow-card: 0 1px 2px rgb(31 29 26 / 0.04), 0 8px 24px -12px rgb(31 29 26 / 0.12);
+  --shadow-card-hover: 0 2px 4px rgb(31 29 26 / 0.05), 0 16px 40px -12px rgb(31 29 26 / 0.18);
+
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss05";
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-paper);
+}
+
+/* 가로 스크롤(peek) 행 — 스크롤바 감춤 */
+.scroll-row {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scroll-row::-webkit-scrollbar {
+  display: none;
+}
+
+/* 순차 등장 (진입 애니메이션) — reduced motion 시 비활성 */
+.stagger > * {
+  animation: var(--animate-fade-up);
+}
+.stagger > *:nth-child(2) { animation-delay: 0.08s; }
+.stagger > *:nth-child(3) { animation-delay: 0.16s; }
+.stagger > *:nth-child(4) { animation-delay: 0.24s; }
+.stagger > *:nth-child(5) { animation-delay: 0.32s; }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 칼럼 본문 타이포그래피 */
+.prose-column {
+  font-size: 1.0625rem;
+  line-height: 1.85;
+  color: var(--color-ink-soft);
+  word-break: keep-all;
+}
+.prose-column strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+h1, h2, h3, h4 {
+  word-break: keep-all;
+}
+p {
+  word-break: keep-all;
+}

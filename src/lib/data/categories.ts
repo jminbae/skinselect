@@ -1,0 +1,67 @@
+import type { Category } from "@/lib/types";
+
+/** 카테고리 8개 고정 — 상세기획서 F-3 */
+export const categories: Category[] = [
+  {
+    slug: "acne",
+    name: "여드름·모공",
+    short: "여드름",
+    description: "성인 여드름부터 압출·흉터·모공까지, 원인과 관리의 기준",
+    tone: { from: "#b5714f", to: "#8a4f33", fg: "#f9efe8" },
+  },
+  {
+    slug: "pigment",
+    name: "기미·색소·미백",
+    short: "기미·색소",
+    description: "기미·주근깨·백반증 — 얼굴 색소 질환의 감별과 치료 원리",
+    tone: { from: "#a08048", to: "#77592c", fg: "#f9f3e6" },
+  },
+  {
+    slug: "anti-aging",
+    name: "안티에이징·리프팅",
+    short: "안티에이징",
+    description: "피부 노화의 과학 — 주름·탄력·볼륨 변화에 대한 근거 있는 답",
+    tone: { from: "#1c5951", to: "#123f39", fg: "#e7f1ee" },
+  },
+  {
+    slug: "laser",
+    name: "레이저·시술 상식",
+    short: "레이저·시술",
+    description: "기전·적응증·주의사항의 중립 서술 — 시술을 이해하고 결정하기",
+    tone: { from: "#3d5a66", to: "#27404b", fg: "#e9f0f3" },
+  },
+  {
+    slug: "sensitive",
+    name: "아토피·습진·민감성",
+    short: "민감성 피부",
+    description: "장벽이 무너진 피부 — 아토피·습진·민감성 피부의 회복 원칙",
+    tone: { from: "#a26775", to: "#7c4553", fg: "#f8edf0" },
+  },
+  {
+    slug: "scalp-hair",
+    name: "두피·탈모",
+    short: "두피·탈모",
+    description: "탈모의 진행과 치료 시점, 두피 건강의 기준",
+    tone: { from: "#6b5a4e", to: "#4a3d34", fg: "#f2ede8" },
+  },
+  {
+    slug: "skin-disease",
+    name: "손발톱·기타 피부질환",
+    short: "피부질환",
+    description: "무좀·사마귀·대상포진 — 흔하지만 잘 모르는 피부 질환들",
+    tone: { from: "#565c78", to: "#3b4058", fg: "#ecedf4" },
+  },
+  {
+    slug: "skincare",
+    name: "스킨케어·성분",
+    short: "스킨케어",
+    description: "성분과 근거로 읽는 스킨케어 — 브랜드가 아닌 기준을 말합니다",
+    tone: { from: "#5f7a5c", to: "#425a40", fg: "#edf2ec" },
+  },
+];
+
+export const categoryMap = new Map(categories.map((c) => [c.slug, c]));
+
+export function getCategory(slug: string) {
+  return categoryMap.get(slug as Category["slug"]);
+}
