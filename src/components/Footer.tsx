@@ -3,39 +3,36 @@ import { site, medicalDisclaimer, navItems } from "@/lib/site";
 
 export default function Footer() {
   return (
-    <footer className="mt-24 border-t border-line bg-paper-warm">
-      <div className="mx-auto max-w-6xl px-5 py-14 md:px-8">
-        <div className="flex flex-col gap-10 md:flex-row md:justify-between">
+    <footer className="mt-20 border-t border-line">
+      <div className="mx-auto max-w-5xl px-5 py-12 md:px-8">
+        <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div className="max-w-sm">
-            <p className="font-serif text-xl font-bold text-ink">스킨셀렉트</p>
-            <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
-              {site.tagline}.
-              <br />
-              피부과 전문의 {site.doctorCount}명이 실명으로 직접 쓰고, 모든
-              칼럼에 근거 출처를 답니다.
+            <p className="text-[17px] font-extrabold tracking-[-0.04em] text-ink">
+              skinselect<span className="text-accent">.</span>
+            </p>
+            <p className="mt-3 text-[14px] leading-relaxed text-ink-soft">
+              {site.tagline}. 피부과 전문의 {site.doctorCount}명이 실명으로
+              직접 쓰고, 모든 칼럼에 근거 출처를 답니다.
             </p>
           </div>
           <nav aria-label="푸터 메뉴">
-            <p className="text-xs font-semibold uppercase tracking-[0.15em] text-ink-faint">
-              Menu
-            </p>
-            <ul className="mt-4 space-y-2.5">
+            <ul className="flex flex-wrap gap-x-6 gap-y-2 md:justify-end">
               {navItems.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-[15px] text-ink-soft transition-colors hover:text-accent"
+                    className="text-[14px] font-medium text-ink-soft transition-colors hover:text-ink"
                   >
                     {item.label}
                   </Link>
                 </li>
               ))}
-              <li className="pt-1">
+              <li>
                 <Link
                   href="/clinics"
-                  className="inline-flex items-center gap-1.5 text-[13.5px] text-ink-faint transition-colors hover:text-accent"
+                  className="inline-flex items-center gap-1.5 text-[14px] font-medium text-ink-faint transition-colors hover:text-ink"
                 >
-                  <span className="rounded-sm border border-line-strong px-1 py-px text-[10px] font-bold tracking-widest">
+                  <span className="rounded-sm border border-line-strong px-1 py-px text-[9px] font-bold tracking-widest">
                     광고
                   </span>
                   진료 병원 안내
@@ -45,23 +42,18 @@ export default function Footer() {
           </nav>
         </div>
 
-        <div className="mt-12 border-t border-line pt-8">
-          <p className="text-[13px] leading-relaxed text-ink-faint">
+        <div className="mt-10 border-t border-line pt-6">
+          <p className="text-[12.5px] leading-relaxed text-ink-faint">
             {medicalDisclaimer}
           </p>
-          <p className="mt-2 text-[13px] leading-relaxed text-ink-faint">
+          <p className="mt-1.5 text-[12.5px] leading-relaxed text-ink-faint">
             칼럼·필진 페이지·질문 보드에는 예약·가격 등 병원 실무 정보를 싣지
             않으며, 병원 안내는 광고로 표시된 페이지에서만 제공합니다.
           </p>
-          <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
-            <p className="text-[13px] text-ink-faint">
-              © 2026 SkinSelect. 서비스 초안(v0.1) — 화면·콘텐츠는 감수 전
-              예시입니다.
-            </p>
-            <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-ink-faint">
-              Written by verified dermatologists
-            </p>
-          </div>
+          <p className="mt-5 text-[12.5px] text-ink-faint">
+            © 2026 SkinSelect · 서비스 초안 v0.1 — 화면과 콘텐츠는 감수 전
+            예시입니다
+          </p>
         </div>
       </div>
     </footer>

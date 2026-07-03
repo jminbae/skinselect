@@ -4,8 +4,7 @@ import type { Column, Doctor } from "@/lib/types";
 import { DoctorBadge } from "@/components/ui";
 
 /**
- * 필진 카드 — 팀블로그의 저자 카드.
- * 사진 + 이름 + 배지 + 한 줄 철학 + 대표 글.
+ * 필진 카드 — 미니멀 가로형. 작은 사진 + 이름 + 배지 + 한 줄 + 대표 글.
  * 소속·별점·후기·순위·조회수는 표기하지 않는다.
  */
 export default function DoctorCard({
@@ -18,38 +17,37 @@ export default function DoctorCard({
   return (
     <Link
       href={`/doctors/${doctor.slug}`}
-      className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
+      className="group flex h-full items-start gap-4 rounded-xl bg-paper p-5 shadow-card transition-shadow hover:shadow-card-hover"
     >
-      <div className="relative aspect-[5/5] overflow-hidden bg-paper-warm">
+      <span className="relative block h-16 w-16 shrink-0 overflow-hidden rounded-full bg-paper-warm">
         <Image
           src={doctor.photos[0]}
-          alt={`${doctor.name} 원장 프로필 사진`}
+          alt={`${doctor.name} 프로필 사진`}
           fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+          sizes="64px"
+          className="object-cover object-top"
         />
-      </div>
-      <div className="flex flex-1 flex-col p-5">
-        <div className="flex flex-wrap items-center gap-2">
-          <h3 className="font-serif text-[19px] font-bold text-ink">
+      </span>
+      <span className="min-w-0">
+        <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+          <span className="text-[16px] font-bold tracking-tight text-ink transition-colors group-hover:text-accent">
             {doctor.name}
-          </h3>
+          </span>
           <DoctorBadge badge={doctor.badge} />
-        </div>
-        <p className="mt-2.5 line-clamp-2 font-serif text-[15px] leading-relaxed text-ink-soft">
-          “{doctor.headline}”
-        </p>
+        </span>
+        <span className="mt-1.5 line-clamp-2 block text-[13.5px] leading-relaxed text-ink-soft">
+          {doctor.headline}
+        </span>
         {pinnedColumn ? (
-          <p className="mt-4 border-t border-line pt-3.5 text-[13px] leading-snug text-ink-soft">
-            <span className="mr-1.5 font-semibold text-accent">대표 글</span>
-            <span className="line-clamp-1 inline">{pinnedColumn.title}</span>
-          </p>
+          <span className="mt-2.5 line-clamp-1 block text-[12.5px] text-ink-faint">
+            대표 글 · {pinnedColumn.title}
+          </span>
         ) : (
-          <p className="mt-4 border-t border-line pt-3.5 text-[13px] text-ink-faint">
+          <span className="mt-2.5 block text-[12.5px] text-ink-faint">
             첫 칼럼을 준비하고 있어요
-          </p>
+          </span>
         )}
-      </div>
+      </span>
     </Link>
   );
 }

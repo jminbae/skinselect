@@ -75,25 +75,25 @@ export default function ColumnCard({
 
   if (variant === "hero") {
     return (
-      <div className="group relative overflow-hidden rounded-3xl bg-white shadow-card transition-shadow duration-300 hover:shadow-card-hover">
+      <div className="group relative overflow-hidden rounded-2xl bg-paper shadow-card transition-shadow duration-300 hover:shadow-card-hover">
         <StretchedLink href={`/columns/${column.slug}`} label={column.title} />
-        <div className="grid md:grid-cols-[1.1fr_1fr]">
-          <div className="relative aspect-[16/10] md:aspect-auto md:min-h-[340px]">
-            <CoverArt category={column.category} title={column.title} size="lg" />
+        <div className="grid md:grid-cols-[2fr_3fr]">
+          <div className="relative aspect-[5/2] md:aspect-auto md:min-h-[220px]">
+            <CoverArt category={column.category} size="lg" />
           </div>
-          <div className="flex flex-col justify-between p-6 md:p-9">
+          <div className="flex flex-col justify-between p-6 md:p-8">
             <div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-clay">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
                 오늘의 픽
               </p>
-              <h3 className="mt-3 font-serif text-[24px] font-bold leading-[1.35] text-ink transition-colors group-hover:text-accent md:text-[30px]">
+              <h3 className="mt-3 text-[21px] font-bold leading-[1.35] tracking-tight text-ink transition-colors group-hover:text-accent md:text-[26px]">
                 {column.title}
               </h3>
-              <p className="mt-4 line-clamp-3 text-[15px] leading-relaxed text-ink-soft">
+              <p className="mt-3 line-clamp-2 text-[14.5px] leading-relaxed text-ink-soft">
                 {column.summary}
               </p>
             </div>
-            <div className="mt-7 flex flex-wrap items-center justify-between gap-3">
+            <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
               <AuthorChip doctor={author} size="md" />
               <span className="text-[12.5px] text-ink-faint">
                 {column.readingMinutes}분 읽기

@@ -2,63 +2,44 @@ import { getCategory } from "@/lib/data/categories";
 import type { CategorySlug } from "@/lib/types";
 
 /**
- * 타이포그래픽 커버 — 사진 없이도 성립하는 칼럼 커버.
- * 카테고리 톤 그라데이션 + 세리프 헤드라인 발췌.
+ * 미니멀 커버 — 뉴트럴 블록 + 카테고리 컬러 도트 + 라벨.
+ * 사진·그라데이션 없이 리스트의 리듬만 만든다.
  */
 export default function CoverArt({
   category,
-  title,
   size = "md",
   className = "",
 }: {
   category: CategorySlug;
-  title: string;
+  title?: string;
   size?: "sm" | "md" | "lg";
   className?: string;
 }) {
   const cat = getCategory(category);
-  const from = cat?.tone.from ?? "#1c5951";
-  const to = cat?.tone.to ?? "#123f39";
-  const fg = cat?.tone.fg ?? "#ffffff";
-  const firstClause = title.split(/[,?—]/)[0];
+  const dot = cat?.tone.from ?? "#0e7a5f";
 
   return (
     <div
-      className={`relative flex h-full w-full items-end overflow-hidden ${className}`}
-      style={{
-        background: `linear-gradient(135deg, ${from} 0%, ${to} 100%)`,
-      }}
+      className={`relative flex h-full w-full items-end bg-paper-warm ${className}`}
       aria-hidden
     >
-      {/* 은은한 텍스처 링 */}
-      <div
-        className="absolute -right-10 -top-14 h-48 w-48 rounded-full opacity-15"
-        style={{ border: `1.5px solid ${fg}` }}
+      <span
+        className={`absolute rounded-full ${
+          size === "lg" ? "left-6 top-6 h-2.5 w-2.5" : "left-4 top-4 h-2 w-2"
+        }`}
+        style={{ background: dot }}
       />
-      <div
-        className="absolute -right-2 -top-6 h-24 w-24 rounded-full opacity-20"
-        style={{ border: `1px solid ${fg}` }}
-      />
-      <div className={size === "sm" ? "p-4" : size === "lg" ? "p-8" : "p-5"}>
-        <p
-          className="text-[10px] font-bold uppercase tracking-[0.24em] opacity-80"
-          style={{ color: fg }}
-        >
-          {cat?.name}
-        </p>
-        <p
-          className={`mt-2 font-serif font-semibold leading-snug ${
-            size === "sm"
-              ? "text-[15px]"
-              : size === "lg"
-                ? "text-2xl md:text-3xl"
-                : "text-lg"
-          }`}
-          style={{ color: fg, wordBreak: "keep-all" }}
-        >
-          {firstClause}
-        </p>
-      </div>
+      <p
+        className={`font-semibold uppercase tracking-[0.16em] text-ink-faint ${
+          size === "sm"
+            ? "p-4 text-[10px]"
+            : size === "lg"
+              ? "p-6 text-[12px]"
+              : "p-4 text-[11px]"
+        }`}
+      >
+        {cat?.name}
+      </p>
     </div>
   );
 }

@@ -31,7 +31,7 @@
 ## 기술 스택
 
 - Next.js 15 (App Router, 정적 생성) + TypeScript + Tailwind CSS v4
-- 폰트: Pretendard(본문) + Noto Serif KR(제목)
+- 디자인: 미니멀 — 화이트 베이스 + 헤어라인 + 단일 그린 액센트, Pretendard 단일 서체
 - 콘텐츠: `src/lib/data/`의 타입드 목업 데이터 (CMS 도입 전 초안 단계)
 - 이미지: `scripts/process-images.mjs` — 원본 사진자료 → WebP 최적화
 

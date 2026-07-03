@@ -2,10 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Column, Doctor } from "@/lib/types";
 
-/**
- * 홈 — 원장별 최신 글 카드 (HOME-02 §8, ScrollRow 자식).
- * 원형 사진·이름 → 원장 페이지, 칼럼 제목 → 칼럼 상세.
- */
+/** 홈 — 필진 카드 (ScrollRow 자식). 미니멀: 작은 원형 사진 + 이름 + 최신 글 */
 export default function WriterCard({
   doctor,
   column,
@@ -14,24 +11,23 @@ export default function WriterCard({
   column: Column;
 }) {
   return (
-    <div className="w-[148px] shrink-0 snap-start" role="listitem">
+    <div className="w-[124px] shrink-0 snap-start" role="listitem">
       <Link href={`/doctors/${doctor.slug}`} className="group block text-center">
-        <span className="relative mx-auto block h-[88px] w-[88px] overflow-hidden rounded-full bg-paper-warm shadow-card">
+        <span className="relative mx-auto block h-16 w-16 overflow-hidden rounded-full bg-paper-warm shadow-card">
           <Image
             src={doctor.photos[0]}
-            alt={`${doctor.name} 원장`}
+            alt={`${doctor.name} 프로필`}
             fill
-            sizes="88px"
+            sizes="64px"
             className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
           />
         </span>
-        <p className="mt-3 text-[15px] font-semibold text-ink transition-colors group-hover:text-accent">
+        <p className="mt-2.5 text-[14px] font-semibold tracking-tight text-ink transition-colors group-hover:text-accent">
           {doctor.name}
         </p>
-        <p className="mt-0.5 text-[11.5px] text-ink-faint">{doctor.badge}</p>
       </Link>
-      <Link href={`/columns/${column.slug}`} className="mt-3 block text-center">
-        <span className="line-clamp-2 text-[12.5px] leading-snug text-ink-soft transition-colors hover:text-accent">
+      <Link href={`/columns/${column.slug}`} className="mt-1.5 block text-center">
+        <span className="line-clamp-2 text-[12px] leading-snug text-ink-faint transition-colors hover:text-accent">
           {column.title}
         </span>
       </Link>

@@ -1,33 +1,36 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── SkinSelect palette — porcelain · ink · clinical green ── */
-  --color-paper: #faf8f4;
-  --color-paper-warm: #f4f0e8;
-  --color-ink: #1f1d1a;
-  --color-ink-soft: #52504b;
-  --color-ink-faint: #8a867e;
-  --color-line: #e7e1d6;
-  --color-line-strong: #d6cfc0;
-  --color-accent: #1c5951;
-  --color-accent-deep: #123f39;
-  --color-accent-soft: #e3ede9;
-  --color-clay: #b5714f;
-  --color-clay-soft: #f3e7de;
-  --color-gold: #a08048;
+  /* ── SkinSelect minimal — white · near-black · single green accent ── */
+  --color-paper: #ffffff;
+  --color-paper-warm: #f6f6f4;
+  --color-ink: #161615;
+  --color-ink-soft: #55544f;
+  --color-ink-faint: #98978f;
+  --color-line: #e9e9e5;
+  --color-line-strong: #d3d3cc;
+  --color-accent: #0e7a5f;
+  --color-accent-deep: #0a5a46;
+  --color-accent-soft: #ecf4f0;
+  /* 구 팔레트 별칭 — 미니멀 리스킨에서 액센트/뉴트럴로 수렴 */
+  --color-clay: #0a5a46;
+  --color-clay-soft: #ecf4f0;
+  --color-gold: #98978f;
 
   --font-sans: var(--font-pretendard), "Pretendard", -apple-system, "Apple SD Gothic Neo", sans-serif;
-  --font-serif: var(--font-serif-kr), "Noto Serif KR", "Nanum Myeongjo", serif;
+  /* 세리프 별칭도 산세리프로 — 전 화면 일괄 미니멀 전환 */
+  --font-serif: var(--font-pretendard), "Pretendard", -apple-system, "Apple SD Gothic Neo", sans-serif;
 
-  --shadow-card: 0 1px 2px rgb(31 29 26 / 0.04), 0 8px 24px -12px rgb(31 29 26 / 0.12);
-  --shadow-card-hover: 0 2px 4px rgb(31 29 26 / 0.05), 0 16px 40px -12px rgb(31 29 26 / 0.18);
+  /* 그림자 → 헤어라인 아웃라인 (플랫) */
+  --shadow-card: 0 0 0 1px var(--color-line);
+  --shadow-card-hover: 0 0 0 1px var(--color-line-strong);
 
-  --animate-fade-up: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-fade-up: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 
   @keyframes fade-up {
     from {
       opacity: 0;
-      transform: translateY(14px);
+      transform: translateY(10px);
     }
     to {
       opacity: 1;
@@ -46,13 +49,24 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  font-feature-settings: "ss05";
   overflow-x: hidden;
 }
 
 ::selection {
-  background: var(--color-accent);
+  background: var(--color-ink);
   color: var(--color-paper);
+}
+
+/* 헤드라인 — 모던 산세리프의 타이트한 자간 */
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: -0.02em;
+  word-break: keep-all;
+}
+p {
+  word-break: keep-all;
 }
 
 /* 가로 스크롤(peek) 행 — 스크롤바 감춤 */
@@ -64,14 +78,14 @@ body {
   display: none;
 }
 
-/* 순차 등장 (진입 애니메이션) — reduced motion 시 비활성 */
+/* 순차 등장 — reduced motion 시 비활성 */
 .stagger > * {
   animation: var(--animate-fade-up);
 }
-.stagger > *:nth-child(2) { animation-delay: 0.08s; }
-.stagger > *:nth-child(3) { animation-delay: 0.16s; }
-.stagger > *:nth-child(4) { animation-delay: 0.24s; }
-.stagger > *:nth-child(5) { animation-delay: 0.32s; }
+.stagger > *:nth-child(2) { animation-delay: 0.06s; }
+.stagger > *:nth-child(3) { animation-delay: 0.12s; }
+.stagger > *:nth-child(4) { animation-delay: 0.18s; }
+.stagger > *:nth-child(5) { animation-delay: 0.24s; }
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -94,11 +108,4 @@ body {
 .prose-column strong {
   color: var(--color-ink);
   font-weight: 600;
-}
-
-h1, h2, h3, h4 {
-  word-break: keep-all;
-}
-p {
-  word-break: keep-all;
 }

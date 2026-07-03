@@ -257,16 +257,16 @@ export default async function ColumnDetailPage({
           {/* 이 글의 결론 */}
           <section
             id="conclusion"
-            className="mt-14 scroll-mt-28 rounded-2xl bg-accent-deep p-7 md:mt-16 md:p-9"
+            className="mt-14 scroll-mt-28 rounded-xl border border-line bg-paper-warm p-7 md:mt-16 md:p-8"
           >
-            <h2 className="font-serif text-[20px] font-bold text-white md:text-[22px]">
+            <h2 className="text-[18px] font-bold tracking-tight text-ink md:text-[20px]">
               이 글의 결론
             </h2>
             <div className="mt-4 space-y-3.5">
               {column.conclusion.map((c) => (
                 <p
                   key={c}
-                  className="text-[15px] leading-[1.85] text-white/85 md:text-[15.5px]"
+                  className="text-[15px] leading-[1.85] text-ink-soft md:text-[15.5px]"
                 >
                   {c}
                 </p>

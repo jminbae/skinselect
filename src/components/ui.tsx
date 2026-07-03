@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-/** 자격 배지 — 이원화 체계 (검증 데이터 기반) */
+/** 자격 배지 — 이원화 체계 (검증 데이터 기반). 미니멀: 채움 없는 체크 + 텍스트 */
 export function DoctorBadge({
   badge,
   size = "sm",
@@ -10,18 +10,20 @@ export function DoctorBadge({
 }) {
   return (
     <span
-      className={`inline-flex items-center gap-1 rounded-full bg-accent font-semibold text-white ${
-        size === "md" ? "px-3 py-1 text-[13px]" : "px-2.5 py-0.5 text-[11px]"
+      className={`inline-flex items-center gap-1 font-semibold text-accent ${
+        size === "md" ? "text-[13px]" : "text-[11.5px]"
       }`}
     >
       <svg
         viewBox="0 0 12 12"
-        className={size === "md" ? "h-3 w-3" : "h-2.5 w-2.5"}
-        fill="currentColor"
+        className={size === "md" ? "h-3.5 w-3.5" : "h-3 w-3"}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.4"
         aria-hidden
       >
-        <path d="M6 0l1.5 1.9 2.3-.5.3 2.3 2.2.9-1.2 2 1.2 2-2.2.9-.3 2.3-2.3-.5L6 12l-1.5-1.9-2.3.5-.3-2.3-2.2-.9 1.2-2-1.2-2 2.2-.9.3-2.3 2.3.5L6 0z" />
-        <path d="M5.4 7.9L3.6 6.1l.8-.8 1 1 2.2-2.2.8.8-3 3z" fill="#1c5951" />
+        <circle cx="6" cy="6" r="5" />
+        <path d="M3.8 6.2l1.5 1.5 2.9-3.2" />
       </svg>
       {badge}
     </span>
@@ -69,7 +71,7 @@ export function Chip({
 /** 섹션 아이브로 (작은 대문자 라벨) */
 export function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-accent">
+    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-faint">
       {children}
     </p>
   );

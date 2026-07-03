@@ -82,63 +82,48 @@ export default async function TopicPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* 카테고리 헤더 밴드 — 커버 아트 톤 */}
-      <section
-        className="relative overflow-hidden"
-        style={{
-          background: `linear-gradient(135deg, ${cat.tone.from} 0%, ${cat.tone.to} 100%)`,
-        }}
-      >
-        {/* 은은한 텍스처 링 (CoverArt 모티프) */}
+      {/* 카테고리 헤더 — 미니멀 타이포 + 컬러 도트 */}
+      <section className="border-b border-line">
         <div
-          className="absolute -right-16 -top-24 h-80 w-80 rounded-full opacity-15"
-          style={{ border: `1.5px solid ${cat.tone.fg}` }}
-          aria-hidden
-        />
-        <div
-          className="absolute -right-4 -top-10 h-40 w-40 rounded-full opacity-20"
-          style={{ border: `1px solid ${cat.tone.fg}` }}
-          aria-hidden
-        />
-        <div
-          className={`relative mx-auto max-w-6xl px-5 pt-12 md:px-8 md:pt-16 ${
-            hub ? "pb-28 md:pb-32" : "pb-14 md:pb-20"
+          className={`mx-auto max-w-5xl px-5 pt-10 md:px-8 md:pt-14 ${
+            hub ? "pb-24 md:pb-28" : "pb-10 md:pb-14"
           }`}
-          style={{ color: cat.tone.fg }}
         >
           <nav
             aria-label="현재 위치"
-            className="flex items-center gap-1.5 text-[12.5px] opacity-75"
+            className="flex items-center gap-1.5 text-[12.5px] text-ink-faint"
           >
-            <Link href="/" className="transition-opacity hover:opacity-100">
+            <Link href="/" className="transition-colors hover:text-ink">
               홈
             </Link>
             <span aria-hidden>›</span>
-            <Link
-              href="/columns"
-              className="transition-opacity hover:opacity-100"
-            >
+            <Link href="/columns" className="transition-colors hover:text-ink">
               칼럼
             </Link>
             <span aria-hidden>›</span>
-            <span className="font-semibold">{cat.name}</span>
+            <span className="font-semibold text-ink-soft">{cat.name}</span>
           </nav>
-          <h1 className="mt-5 font-serif text-[32px] font-bold leading-tight md:text-[44px]">
+          <h1 className="mt-5 flex items-center gap-3 text-[28px] font-extrabold tracking-[-0.03em] text-ink md:text-[38px]">
+            <span
+              className="h-2.5 w-2.5 shrink-0 rounded-full"
+              style={{ background: cat.tone.from }}
+              aria-hidden
+            />
             {cat.name}
           </h1>
-          <p className="mt-4 max-w-xl text-[15px] leading-relaxed opacity-85 md:text-[16.5px]">
+          <p className="mt-3 max-w-xl text-[14.5px] leading-relaxed text-ink-soft md:text-[15.5px]">
             {cat.description}
           </p>
-          <p className="mt-6 text-[11.5px] font-bold uppercase tracking-[0.22em] opacity-70">
+          <p className="mt-5 text-[12px] font-medium text-ink-faint">
             칼럼 {list.length}편
           </p>
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-5 md:px-8">
+      <div className="mx-auto max-w-5xl px-5 md:px-8">
         {/* 총정리(허브) 글 — 상단 고정 대형 카드 */}
         {hub && hubAuthor && (
-          <div className="group relative -mt-14 overflow-hidden rounded-3xl bg-white shadow-card transition-shadow duration-300 hover:shadow-card-hover md:-mt-16">
+          <div className="group relative -mt-14 overflow-hidden rounded-2xl bg-paper shadow-card transition-shadow duration-300 hover:shadow-card-hover md:-mt-16">
             <Link
               href={`/columns/${hub.slug}`}
               className="absolute inset-0 z-[1]"
@@ -197,7 +182,7 @@ export default async function TopicPage({
 
       {/* 다른 주제로 이동 */}
       <section className="border-t border-line bg-paper-warm">
-        <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
+        <div className="mx-auto max-w-5xl px-5 py-12 md:px-8 md:py-16">
           <h2 className="font-serif text-[19px] font-bold text-ink md:text-[22px]">
             다른 주제 둘러보기
           </h2>
