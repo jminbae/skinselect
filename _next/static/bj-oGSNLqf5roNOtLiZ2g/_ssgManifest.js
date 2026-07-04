@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002Fclinics\u002F[slug]","\u002Fcolumns\u002F[slug]","\u002Fcolumns\u002Ftopic\u002F[category]","\u002Fdoctors\u002F[slug]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
