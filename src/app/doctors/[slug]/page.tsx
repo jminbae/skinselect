@@ -151,9 +151,9 @@ export default async function DoctorPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* ── 히어로: 그라데이션 배경 + 사진 크로스페이드 + SNS 풍선 ── */}
+      {/* ── 히어로: 그라데이션 배경 + 누끼 사진 크로스페이드 + SNS 풍선 ── */}
       <DoctorHero
-        photos={doctor.photos}
+        photos={doctor.photos.map((p) => p.replace(".webp", "-cut.webp"))}
         name={doctor.name}
         position={doctor.position ?? "원장"}
         badge={doctor.badge}

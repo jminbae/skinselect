@@ -115,8 +115,8 @@ export default function DoctorHero({
       `}</style>
 
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-end px-0 md:min-h-[600px] md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:gap-8 md:px-8">
-        {/* 정보 블록 — 데스크탑 좌하단 */}
-        <div className="order-2 px-5 pb-10 pt-7 md:order-1 md:px-0 md:pb-20 md:pt-24">
+        {/* 정보 블록 — 모바일 상단 · 데스크탑 좌하단 */}
+        <div className="px-5 pb-2 pt-9 md:px-0 md:pb-20 md:pt-24">
           {clinicName &&
             (clinicHref ? (
               <Link
@@ -154,8 +154,8 @@ export default function DoctorHero({
         </div>
 
         {/* 사진 블록 — 하단 플러시 + SNS 풍선 */}
-        <div className="relative order-1 md:order-2 md:self-end">
-          <div className="relative mx-auto aspect-[4/5] w-full max-w-[480px] md:max-w-none">
+        <div className="relative md:self-end">
+          <div className="relative mx-auto -mt-4 aspect-[4/5] w-full max-w-[460px] md:mt-0 md:max-w-none">
             {photos.map((src, i) => (
               <div
                 key={src}
@@ -172,14 +172,7 @@ export default function DoctorHero({
                   fill
                   priority={i === 0}
                   sizes="(max-width: 768px) 100vw, 560px"
-                  className="object-cover object-top"
-                  style={{
-                    maskImage:
-                      "linear-gradient(to bottom, transparent 0%, black 7%, black 100%), linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)",
-                    maskComposite: "intersect",
-                    WebkitMaskImage:
-                      "linear-gradient(to bottom, transparent 0%, black 7%, black 100%)",
-                  }}
+                  className="object-contain object-bottom"
                 />
               </div>
             ))}

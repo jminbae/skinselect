@@ -80,7 +80,7 @@ export interface Clinic {
 
 export interface Equipment {
   name: string; // 장비명
-  what: string; // "이 장비로 무엇을 하는가" 1~2문장 (효능 보장 표현 금지)
+  what?: string; // "이 장비로 무엇을 하는가" (선택 — 갤러리에서는 미표시)
   image?: string; // "/images/equipment/{file}.webp"
   fieldSlugs: CategorySlug[]; // 관련 진료 분야 태그 (③↔⑥ 연동)
   branches: BranchSlug[];
