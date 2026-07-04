@@ -5,11 +5,11 @@ import { doctors, getDoctor, doctorsByBranch } from "@/lib/data/doctors";
 import { getClinic } from "@/lib/data/clinics";
 import { columnsByAuthor } from "@/lib/data/columns";
 import { equipmentByBranch } from "@/lib/data/equipment";
-import { getCategory } from "@/lib/data/categories";
 import { site } from "@/lib/site";
 import DoctorHero from "@/components/doctors/DoctorHero";
 import ColumnCard from "@/components/ColumnCard";
 import DoctorCard from "@/components/DoctorCard";
+import EquipmentGrid from "@/components/EquipmentGrid";
 import { Chip } from "@/components/ui";
 
 export function generateStaticParams() {
@@ -257,45 +257,14 @@ export default async function DoctorPage({
           </section>
         )}
 
-        {/* ── 장비 갤러리 ── */}
+        {/* ── 장비 갤러리 — 4개 + 더 보기 ── */}
         {gear.length > 0 && (
           <section className="border-t border-line py-10 md:py-14">
             <h2 className="mb-6 text-[20px] font-bold tracking-tight text-ink md:text-[24px]">
-              시술 장비
+              시술 장비{" "}
+              <span className="text-ink-faint">{gear.length}</span>
             </h2>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-4">
-              {gear.map((e) => {
-                const cat = getCategory(e.fieldSlugs[0]);
-                return (
-                  <div
-                    key={e.name}
-                    className="overflow-hidden rounded-xl bg-paper shadow-card"
-                  >
-                    <div className="relative aspect-square bg-paper-warm">
-                      {e.image && (
-                        <Image
-                          src={e.image}
-                          alt={`${e.name} 장비`}
-                          fill
-                          sizes="(max-width: 640px) 50vw, 25vw"
-                          className="object-contain p-5"
-                        />
-                      )}
-                    </div>
-                    <div className="p-3.5">
-                      <p className="text-[13.5px] font-bold tracking-tight text-ink">
-                        {e.name}
-                      </p>
-                      {cat && (
-                        <span className="mt-1.5 inline-block rounded-full bg-accent-soft px-2 py-0.5 text-[10.5px] font-semibold text-accent-deep">
-                          {cat.name}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            <EquipmentGrid items={gear} />
           </section>
         )}
 
